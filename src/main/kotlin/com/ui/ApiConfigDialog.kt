@@ -8,7 +8,6 @@ import java.awt.Font
 import javax.swing.*
 import javax.swing.border.EmptyBorder
 
-//UNUSED - It will import a graph by sending a selected URL to a local endpoint which returns a graph is a list format (A -> B)
 class ApiConfigDialog(parent: JFrame) : JDialog(parent, "API Configuration", true) {
 
     private val urlField = JTextField("http://localhost:8080").apply {

@@ -9,9 +9,6 @@ import javax.swing.JButton
 import javax.swing.JToolBar
 import javax.swing.border.MatteBorder
 
-/**
- * Custom toolbar that mimics the JetBrains IDE toolbar style.
- */
 class JetBrainsToolbar : JToolBar() {
     init {
         isFloatable = false
@@ -19,13 +16,7 @@ class JetBrainsToolbar : JToolBar() {
         border = MatteBorder(0, 0, 1, 0, DarculaTheme.borderColor)
     }
 
-    /**
-     * Creates a toolbar button with JetBrains styling.
-     *
-     * @param text The button text
-     * @param tooltip The button tooltip
-     * @return The created button
-     */
+
     fun createToolbarButton(text: String, tooltip: String): JButton {
         return JButton(text).apply {
             background = DarculaTheme.toolbarColor
@@ -47,14 +38,6 @@ class JetBrainsToolbar : JToolBar() {
         }
     }
 
-    /**
-     * Adds a button to the toolbar.
-     *
-     * @param text The button text
-     * @param tooltip The button tooltip
-     * @param action The action to perform when the button is clicked
-     * @return The created button
-     */
     fun addButton(text: String, tooltip: String, action: () -> Unit): JButton {
         val button = createToolbarButton(text, tooltip)
         button.addActionListener { action() }

@@ -16,16 +16,13 @@ import java.awt.image.BufferedImage
  * This renderer is used for exporting static images of the graph.
  */
 class SimpleGraphRenderer : DiagramRenderer {
-    // Colors for JetBrains-like UI
-    private val backgroundColor = Color(43, 43, 43)  // Dark background
-    private val edgeColor = Color(180, 180, 180)  // Light gray for edges
-    private val vertexColor = Color(75, 110, 175)  // JetBrains blue
-    private val vertexBorderColor = Color(90, 130, 200)  // Lighter blue border
+    private val backgroundColor = Color(43, 43, 43)
+    private val edgeColor = Color(180, 180, 180)
+    private val vertexColor = Color(75, 110, 175)
+    private val vertexBorderColor = Color(90, 130, 200)
     private val textColor = Color.WHITE  // White text
 
-    // Make the vertex positions accessible to other components
     companion object {
-        // Shared map of vertex positions accessible by both renderer and interactive panel
         val vertexPositions = mutableMapOf<String, Pair<Int, Int>>()
     }
 

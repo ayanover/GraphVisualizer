@@ -4,14 +4,14 @@ import java.awt.Color
 import javax.swing.UIManager
 
 object DarculaTheme {
-    val backgroundColor = Color(43, 43, 43) // Dark background
-    val foregroundColor = Color(187, 187, 187) // Light text
-    val borderColor = Color(53, 53, 53) // Darker border
-    val selectionColor = Color(75, 110, 175) // Blue selection
-    val caretColor = Color(187, 187, 187) // Light cursor
-    val editorBackgroundColor = Color(43, 43, 43) // Editor background
-    val toolbarColor = Color(60, 63, 65) // Toolbar background
-    val activeTabColor = Color(75, 75, 75) // Active tab
+    val backgroundColor = Color(43, 43, 43)
+    val foregroundColor = Color(187, 187, 187)
+    val borderColor = Color(53, 53, 53)
+    val selectionColor = Color(75, 110, 175)
+    val caretColor = Color(187, 187, 187)
+    val editorBackgroundColor = Color(43, 43, 43)
+    val toolbarColor = Color(60, 63, 65)
+    val activeTabColor = Color(75, 75, 75)
 
     fun apply() {
         try {
