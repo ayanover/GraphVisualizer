@@ -1,6 +1,6 @@
 package com.renderer
 
-import com.model.Graph
+import com.Graph
 
 class MermaidGenerator {
     fun generateMermaid(graph: Graph): String {

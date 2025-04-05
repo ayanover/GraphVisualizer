@@ -1,6 +1,6 @@
 package com.renderer
 
-import com.model.Graph
+import com.Graph
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient

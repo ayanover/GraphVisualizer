@@ -1,4 +1,4 @@
-package com.model
+package com
 
 
 data class Graph(val vertices: List<Vertex>, val edges: List<Edge>) {

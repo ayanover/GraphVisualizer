@@ -1,8 +1,8 @@
 package com.parser
 
-import com.model.Edge
-import com.model.Graph
-import com.model.Vertex
+import com.Edge
+import com.Graph
+import com.Vertex
 
 class GraphParser {
     /**

@@ -1,7 +1,7 @@
 package com.ui
 
-import com.model.Graph
-import com.model.Vertex
+import com.Graph
+import com.Vertex
 import com.renderer.SimpleGraphRenderer
 import com.ui.theme.DarculaTheme
 import java.awt.*

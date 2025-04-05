@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "1.9.10"
     application
+    id("jacoco") // Added for code coverage reports
 }
 
 kotlin {
@@ -26,9 +27,19 @@ dependencies {
     // JSON parsing
     implementation("org.json:json:20230227")
 
-    // JetBrains Mono font
+    // Testing - JUnit 5 (Jupiter)
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.9.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
 
-    // Testing
+    // Mockito for Kotlin
+    testImplementation("org.mockito:mockito-core:5.0.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
+
+    // Coroutines testing
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+
+    // Keep existing test dependencies for backward compatibility
     testImplementation("junit:junit:4.13.2")
     testImplementation(kotlin("test"))
 }
@@ -38,7 +49,30 @@ application {
 }
 
 tasks.test {
-    useJUnit()
+    useJUnitPlatform() // Changed from useJUnit() to support JUnit 5
+
+    testLogging {
+        events("passed", "skipped", "failed")
+        showExceptions = true
+        showStandardStreams = true
+        showCauses = true
+        showStackTraces = true
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.8"
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+        csv.required.set(false)
+    }
+
+    dependsOn(tasks.test)
 }
 
 tasks.jar {

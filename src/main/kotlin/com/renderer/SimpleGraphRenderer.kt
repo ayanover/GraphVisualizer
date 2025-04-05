@@ -1,7 +1,7 @@
 package com.renderer
 
-import com.model.Graph
-import com.model.Vertex
+import com.Graph
+import com.Vertex
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.awt.BasicStroke
@@ -11,10 +11,6 @@ import java.awt.Graphics2D
 import java.awt.RenderingHints
 import java.awt.image.BufferedImage
 
-/**
- * Renders a Graph directly as a BufferedImage without using external services.
- * This renderer is used for exporting static images of the graph.
- */
 class SimpleGraphRenderer : DiagramRenderer {
     private val backgroundColor = Color(43, 43, 43)
     private val edgeColor = Color(180, 180, 180)

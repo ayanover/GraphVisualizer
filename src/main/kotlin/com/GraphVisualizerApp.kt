@@ -1,6 +1,6 @@
 package com
 
-import com.model.Graph
+import com.Graph
 import com.parser.GraphParser
 import com.renderer.DiagramRenderer
 import com.renderer.MermaidGenerator

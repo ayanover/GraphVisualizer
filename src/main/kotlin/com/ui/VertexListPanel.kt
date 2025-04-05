@@ -1,6 +1,6 @@
 package com.ui
 
-import com.model.Vertex
+import com.Vertex
 import java.awt.BorderLayout
 import java.awt.Color
 import java.awt.Font
