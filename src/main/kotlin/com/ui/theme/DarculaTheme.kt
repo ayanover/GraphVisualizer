@@ -3,69 +3,52 @@ package com.ui.theme
 import java.awt.Color
 import javax.swing.UIManager
 
+/**
+ * Dark theme implementation inspired by JetBrains Darcula theme.
+ */
 object DarculaTheme {
     val backgroundColor = Color(43, 43, 43)
     val foregroundColor = Color(187, 187, 187)
-    val borderColor = Color(53, 53, 53)
-    val selectionColor = Color(75, 110, 175)
-    val caretColor = Color(187, 187, 187)
-    val editorBackgroundColor = Color(43, 43, 43)
     val toolbarColor = Color(60, 63, 65)
-    val activeTabColor = Color(75, 75, 75)
+    val editorBackgroundColor = Color(43, 43, 43)
+    val selectionColor = Color(75, 110, 175)
+    val borderColor = Color(53, 53, 53)
+    val activeTabColor = Color(85, 85, 85)
+    val caretColor = Color.WHITE
 
+    /**
+     * Apply the theme to the application.
+     */
     fun apply() {
         try {
-            for (info in UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus" == info.name) {
-                    UIManager.setLookAndFeel(info.className)
-                    break
-                }
-            }
-
-            UIManager.put("control", Color(60, 63, 65))
-            UIManager.put("info", Color(60, 63, 65))
-            UIManager.put("nimbusBase", Color(60, 63, 65))
-            UIManager.put("nimbusBlueGrey", Color(60, 63, 65))
-            UIManager.put("nimbusDisabledText", Color(128, 128, 128))
-            UIManager.put("nimbusFocus", Color(115, 164, 209))
-            UIManager.put("nimbusLightBackground", Color(43, 43, 43))
-            UIManager.put("nimbusOrange", Color(191, 98, 4))
-            UIManager.put("nimbusSelectedText", Color(255, 255, 255))
-            UIManager.put("nimbusSelectionBackground", Color(75, 110, 175))
-            UIManager.put("text", Color(187, 187, 187))
-
-            UIManager.put("ScrollBar.thumb", Color(85, 85, 85))
-            UIManager.put("ScrollBar.thumbDarkShadow", Color(85, 85, 85))
-            UIManager.put("ScrollBar.thumbHighlight", Color(85, 85, 85))
-            UIManager.put("ScrollBar.thumbShadow", Color(85, 85, 85))
-            UIManager.put("ScrollBar.track", Color(43, 43, 43))
-
-            UIManager.put("Button.background", Color(60, 63, 65))
-            UIManager.put("Button.foreground", Color(187, 187, 187))
-            UIManager.put("Button.select", Color(75, 110, 175))
-
-            UIManager.put("CheckBox.background", Color(43, 43, 43))
-            UIManager.put("CheckBox.foreground", Color(187, 187, 187))
-
-            UIManager.put("Panel.background", backgroundColor)
-            UIManager.put("ToolBar.background", toolbarColor)
-
-            UIManager.put("MenuItem.selectionBackground", selectionColor)
-            UIManager.put("MenuItem.selectionForeground", Color.WHITE)
-            UIManager.put("Menu.selectionBackground", selectionColor)
-            UIManager.put("Menu.selectionForeground", Color.WHITE)
-            UIManager.put("Menu.borderPainted", false)
-
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName())
         } catch (e: Exception) {
             e.printStackTrace()
-            try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName())
-            } catch (ex: Exception) {
-                ex.printStackTrace()
-            }
         }
 
-        System.setProperty("awt.useSystemAAFontSettings", "on")
-        System.setProperty("swing.aatext", "true")
+        UIManager.put("Panel.background", backgroundColor)
+        UIManager.put("Panel.foreground", foregroundColor)
+        UIManager.put("Label.foreground", foregroundColor)
+        UIManager.put("Button.background", toolbarColor)
+        UIManager.put("Button.foreground", foregroundColor)
+        UIManager.put("TextField.background", editorBackgroundColor)
+        UIManager.put("TextField.foreground", foregroundColor)
+        UIManager.put("TextArea.background", editorBackgroundColor)
+        UIManager.put("TextArea.foreground", foregroundColor)
+        UIManager.put("ScrollPane.background", backgroundColor)
+        UIManager.put("TabbedPane.background", toolbarColor)
+        UIManager.put("TabbedPane.foreground", foregroundColor)
+        UIManager.put("TabbedPane.selected", activeTabColor)
+        UIManager.put("ToolBar.background", toolbarColor)
+        UIManager.put("ComboBox.background", toolbarColor)
+        UIManager.put("ComboBox.foreground", foregroundColor)
+        UIManager.put("MenuItem.background", toolbarColor)
+        UIManager.put("MenuItem.foreground", foregroundColor)
+        UIManager.put("Menu.background", toolbarColor)
+        UIManager.put("Menu.foreground", foregroundColor)
+        UIManager.put("MenuBar.background", toolbarColor)
+        UIManager.put("MenuBar.foreground", foregroundColor)
+        UIManager.put("CheckBox.background", backgroundColor)
+        UIManager.put("CheckBox.foreground", foregroundColor)
     }
 }

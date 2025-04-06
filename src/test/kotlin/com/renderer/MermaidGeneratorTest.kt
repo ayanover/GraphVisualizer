@@ -1,6 +1,6 @@
-import com.Edge
-import com.Graph
-import com.Vertex
+import com.model.Edge
+import com.model.Graph
+import com.model.Vertex
 import com.renderer.MermaidGenerator
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test

@@ -1,6 +1,5 @@
 package com.model
 
-import com.Vertex
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 

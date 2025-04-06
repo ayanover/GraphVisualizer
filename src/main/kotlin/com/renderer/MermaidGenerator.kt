@@ -1,9 +1,10 @@
 package com.renderer
 
-import com.Graph
+import com.model.Graph
+import javax.inject.Inject
 
-class MermaidGenerator {
-    fun generateMermaid(graph: Graph): String {
+class MermaidGenerator @Inject constructor() : IMermaidGenerator {
+    override fun generateMermaid(graph: Graph): String {
         val filteredGraph = graph.getFilteredGraph()
 
         val builder = StringBuilder("graph TD\n")

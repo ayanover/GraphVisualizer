@@ -1,9 +1,10 @@
 package com.ui
 
-import com.Vertex
+import com.model.Vertex
 import java.awt.BorderLayout
 import java.awt.Color
 import java.awt.Font
+import javax.inject.Inject
 import javax.swing.BoxLayout
 import javax.swing.JCheckBox
 import javax.swing.JLabel
@@ -12,8 +13,10 @@ import javax.swing.JScrollPane
 import javax.swing.JSeparator
 import javax.swing.border.EmptyBorder
 
-
-class VertexListPanel : JPanel() {
+/**
+ * Panel that displays a list of vertices with checkboxes to enable/disable them.
+ */
+class VertexListPanel @Inject constructor() : JPanel(), IVertexListPanel {
     private val vertexBoxes = mutableMapOf<String, JCheckBox>()
     private val verticesPanel = JPanel()
     private var onVertexToggleListener: ((List<Vertex>) -> Unit)? = null
@@ -35,7 +38,7 @@ class VertexListPanel : JPanel() {
         add(scrollPane, BorderLayout.CENTER)
     }
 
-    fun setupDarculaColors(bgColor: Color, fgColor: Color, brdColor: Color) {
+    override fun setupDarculaColors(bgColor: Color, fgColor: Color, brdColor: Color) {
         backgroundColor = bgColor
         foregroundColor = fgColor
         borderColor = brdColor
@@ -47,7 +50,7 @@ class VertexListPanel : JPanel() {
         verticesPanel.foreground = foregroundColor
     }
 
-    fun updateVertices(vertices: List<Vertex>) {
+    override fun updateVertices(vertices: List<Vertex>) {
         val currentStates = vertexBoxes.mapValues { it.value.isSelected }
 
         verticesPanel.removeAll()
@@ -87,12 +90,11 @@ class VertexListPanel : JPanel() {
         verticesPanel.repaint()
     }
 
-
-    fun setOnVertexToggleListener(listener: (List<Vertex>) -> Unit) {
+    override fun setOnVertexToggleListener(listener: (List<Vertex>) -> Unit) {
         onVertexToggleListener = listener
     }
 
-    fun getVertices(): List<Vertex> {
+    override fun getVertices(): List<Vertex> {
         return vertexBoxes.map { (name, box) ->
             Vertex(name, box.isSelected)
         }

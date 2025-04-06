@@ -3,6 +3,6 @@ package com.renderer
 import com.model.Graph
 import java.awt.image.BufferedImage
 
-interface DiagramRenderer {
+interface IGraphRenderer {
     suspend fun renderToImage(graph: Graph): BufferedImage?
 }

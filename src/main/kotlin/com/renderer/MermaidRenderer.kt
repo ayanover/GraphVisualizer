@@ -1,6 +1,6 @@
 package com.renderer
 
-import com.Graph
+import com.model.Graph
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
@@ -10,19 +10,16 @@ import java.io.ByteArrayInputStream
 import java.util.Base64
 import java.util.concurrent.TimeUnit
 import javax.imageio.ImageIO
+import javax.inject.Inject
 
-class MermaidRenderer(private val mermaidGenerator: MermaidGenerator) : DiagramRenderer {
+class MermaidRenderer @Inject constructor(
+    private val mermaidGenerator: IMermaidGenerator
+) : IGraphRenderer {
     private val client = OkHttpClient.Builder()
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
         .build()
 
-    /**
-     * Renders a graph to an image using the Mermaid web service.
-     *
-     * @param graph The graph to render
-     * @return A BufferedImage representation of the graph, or null if rendering failed
-     */
     override suspend fun renderToImage(graph: Graph): BufferedImage? = withContext(Dispatchers.IO) {
         try {
             val mermaidCode = mermaidGenerator.generateMermaid(graph)

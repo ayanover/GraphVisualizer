@@ -1,4 +1,4 @@
-import com.Edge
+import com.model.Edge
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

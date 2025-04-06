@@ -6,6 +6,7 @@ fun main() {
     DarculaTheme.apply()
 
     SwingUtilities.invokeLater {
-        GraphVisualizerApp().isVisible = true
+        val app = GraphVisualizerApp()
+        app.isVisible = true
     }
 }

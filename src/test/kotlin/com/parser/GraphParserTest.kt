@@ -1,8 +1,6 @@
 package com.parser
 
-import com.Edge
-import com.Graph
-import com.Vertex
+import com.model.Edge
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
 

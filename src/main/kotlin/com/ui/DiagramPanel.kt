@@ -6,11 +6,11 @@ import java.awt.Graphics
 import java.awt.Graphics2D
 import java.awt.RenderingHints
 import java.awt.image.BufferedImage
+import javax.inject.Inject
 import javax.swing.JPanel
 
-
-class DiagramPanel : JPanel() {
-    var diagram: BufferedImage? = null
+class DiagramPanel @Inject constructor() : JPanel(), IDiagramPanel {
+    override var diagram: BufferedImage? = null
     var backgroundColor = Color(43, 43, 43)
 
     init {
@@ -56,7 +56,7 @@ class DiagramPanel : JPanel() {
         }
     }
 
-    fun updateDiagram(newDiagram: BufferedImage?) {
+    override fun updateDiagram(newDiagram: BufferedImage?) {
         diagram = newDiagram
         repaint()
     }

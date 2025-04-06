@@ -1,87 +1,44 @@
 plugins {
-    kotlin("jvm") version "1.9.10"
+    kotlin("jvm") version "1.9.21"
+    kotlin("kapt") version "1.9.21"
     application
-    id("jacoco") // Added for code coverage reports
 }
 
-kotlin {
-    jvmToolchain(17) // Set Java compatibility level
-}
-
-group = "com.example"
+group = "com"
 version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    google()
 }
 
 dependencies {
-    // Kotlin Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.7.3")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.7.1")
 
-    // HTTP Client
-    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation("com.google.dagger:dagger:2.48")
+    kapt("com.google.dagger:dagger-compiler:2.48")
 
-    // JSON parsing
-    implementation("org.json:json:20230227")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
 
-    // Testing - JUnit 5 (Jupiter)
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.9.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
-
-    // Mockito for Kotlin
-    testImplementation("org.mockito:mockito-core:5.0.0")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
-
-    // Coroutines testing
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
-
-    // Keep existing test dependencies for backward compatibility
-    testImplementation("junit:junit:4.13.2")
-    testImplementation(kotlin("test"))
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.3")
+    testImplementation("org.mockito:mockito-core:5.4.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.0.0")
 }
 
 application {
-    mainClass.set("MainKt")
+    mainClass.set("com.MainKt")
 }
-
+kotlin {
+    jvmToolchain(17)
+}
 tasks.test {
-    useJUnitPlatform() // Changed from useJUnit() to support JUnit 5
-
-    testLogging {
-        events("passed", "skipped", "failed")
-        showExceptions = true
-        showStandardStreams = true
-        showCauses = true
-        showStackTraces = true
-        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
-    }
+    useJUnitPlatform()
 }
 
-jacoco {
-    toolVersion = "0.8.8"
-}
-
-tasks.jacocoTestReport {
-    reports {
-        xml.required.set(true)
-        html.required.set(true)
-        csv.required.set(false)
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>() {
+    kotlinOptions {
+        jvmTarget = "17"
     }
-
-    dependsOn(tasks.test)
-}
-
-tasks.jar {
-    manifest {
-        attributes["Main-Class"] = "MainKt"
-    }
-
-    // Include all dependencies in the JAR
-    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
-
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }

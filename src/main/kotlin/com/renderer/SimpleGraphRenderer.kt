@@ -1,7 +1,7 @@
 package com.renderer
 
-import com.Graph
-import com.Vertex
+import com.model.Graph
+import com.model.Vertex
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.awt.BasicStroke
@@ -10,24 +10,20 @@ import java.awt.Font
 import java.awt.Graphics2D
 import java.awt.RenderingHints
 import java.awt.image.BufferedImage
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class SimpleGraphRenderer : DiagramRenderer {
+@Singleton
+class SimpleGraphRenderer @Inject constructor() : IGraphRenderer {
     private val backgroundColor = Color(43, 43, 43)
     private val edgeColor = Color(180, 180, 180)
     private val vertexColor = Color(75, 110, 175)
     private val vertexBorderColor = Color(90, 130, 200)
-    private val textColor = Color.WHITE  // White text
+    private val textColor = Color.WHITE
 
     companion object {
         val vertexPositions = mutableMapOf<String, Pair<Int, Int>>()
     }
-
-    /**
-     * Renders a graph directly as a BufferedImage.
-     *
-     * @param graph The graph to render
-     * @return A BufferedImage representation of the graph
-     */
     override suspend fun renderToImage(graph: Graph): BufferedImage? = withContext(Dispatchers.Default) {
         val width = 800
         val height = 600
@@ -42,14 +38,6 @@ class SimpleGraphRenderer : DiagramRenderer {
         }
     }
 
-    /**
-     * Renders a graph to a Graphics2D context.
-     *
-     * @param graph The graph to render
-     * @param g2d The Graphics2D context to render to
-     * @param width The width of the image
-     * @param height The height of the image
-     */
     private fun renderGraphToGraphics(graph: Graph, g2d: Graphics2D, width: Int, height: Int) {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON)

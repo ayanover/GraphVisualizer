@@ -1,20 +1,20 @@
 package com.ui
 
-import com.Graph
-import com.Vertex
+import com.model.Graph
 import com.renderer.SimpleGraphRenderer
 import com.ui.theme.DarculaTheme
 import java.awt.*
 import java.awt.event.*
 import java.awt.geom.Line2D
 import java.awt.geom.Path2D
+import javax.inject.Inject
 import javax.swing.JPanel
 import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt
 
-class InteractiveGraphPanel : JPanel(), MouseListener, MouseMotionListener {
+class InteractiveGraphPanel @Inject constructor() : JPanel(), MouseListener, MouseMotionListener, IInteractiveGraphPanel {
     private var graph: Graph? = null
 
     private val nodePositions = mutableMapOf<String, Point>()
@@ -40,7 +40,7 @@ class InteractiveGraphPanel : JPanel(), MouseListener, MouseMotionListener {
         addMouseMotionListener(this)
     }
 
-    fun setGraph(newGraph: Graph) {
+    override fun setGraph(newGraph: Graph) {
         graph = newGraph
         initializeNodePositions()
         repaint()
@@ -114,22 +114,6 @@ class InteractiveGraphPanel : JPanel(), MouseListener, MouseMotionListener {
         println("Final nodePositions in InteractiveGraphPanel after initialization:")
         nodePositions.forEach { (name, pos) ->
             println("  $name: (${pos.x}, ${pos.y})")
-        }
-    }
-
-    private fun createCircularLayout(vertices: List<Vertex>) {
-        val centerX = width / 2
-        val centerY = height / 2
-        val radius = minOf(width, height) / 3
-
-        vertices.forEachIndexed { index, vertex ->
-            val angle = 2.0 * Math.PI * index / vertices.size
-            val x = centerX + (radius * Math.cos(angle)).toInt()
-            val y = centerY + (radius * Math.sin(angle)).toInt()
-
-            nodePositions[vertex.name] = Point(x, y)
-
-            SimpleGraphRenderer.vertexPositions[vertex.name] = Pair(x, y)
         }
     }
 
